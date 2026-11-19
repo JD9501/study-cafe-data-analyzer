@@ -45,6 +45,11 @@ html = rep(html, "      s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.
 html = rep(html, "async function _writeHtml(model){\n", "async function _writeHtml(model){\n  let _chartLib=''; try{ _chartLib=await (await fetch('vendor/chart.umd.js')).text(); }catch(e){}\n")
 html = rep(html, """    +'<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"><\\/script>'""",
     """    +(_chartLib?'<script>'+_chartLib.replace(/<\\/script/gi,'<\\\\/script')+'<\\/script>':'<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"><\\/script>')""")
+# "Analyse a new dataset" reloads the page. The desktop/Colab page then polls the server's root URL until it
+# answers; here there is no server (and the site's origin root is not this site), so skip the wait: the reload
+# already starts a fresh engine, and uploads wait for it.
+html = rep(html, "  sessionStorage.removeItem('_reloading');\n",
+                 "  sessionStorage.removeItem('_reloading');\n  return;   // browser edition: nothing to reconnect to\n")
 # drill-downs are worked out on request in the browser edition
 html = rep(html, "    else if(p.state==='done'){ el.textContent='All '+(p.total||0).toLocaleString()+' drill-down combinations are ready.'; }",
     "    else if(p.state==='done'){ el.textContent='All '+(p.total||0).toLocaleString()+' drill-down combinations are ready.'; }\n"

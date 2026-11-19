@@ -1545,6 +1545,7 @@ let _analyticsBuilt = false;
 (function(){
   if(!sessionStorage.getItem('_reloading')) return;
   sessionStorage.removeItem('_reloading');
+  return;   // browser edition: nothing to reconnect to
 
   // Show the reconnecting overlay and hide the drop zone
   const overlay = document.getElementById('reconnect-overlay');
