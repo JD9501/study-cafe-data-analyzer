@@ -1,6 +1,6 @@
 # Study Café Survey Analyzer
 
-Should a study café open near campus, and how should it be run? This tool takes a student survey and answers that with data: what students want, what they would pay, when they would come, and what the café would earn.
+Should a study café open near campus, and how should it be run? This tool takes a student survey and answers that with data: what students want, what they would pay, when they would come, and what the café would earn. This was a live project done for a client who wanted to use the survey data, to validate and strategize their business approach, and also create scenario modelling algorithms that could help them get a better read on how different market factors can affect their business. The analytics shown here are based on some predefines assumptions and gaurdrails.
 
 **Try it in your browser: https://jd9501.github.io/study-cafe-data-analyzer/**
 
